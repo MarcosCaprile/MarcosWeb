@@ -119,6 +119,13 @@ h1{
   box-shadow: 0 10px 28px rgba(15,26,20,.06);
   backdrop-filter: blur(6px);
 }
+/* Entfernt den grünen Balken über den Boxen (falls irgendwo noch .card::before existiert) */
+.card::before,
+.card:before{
+  content: none !important;
+  display: none !important;
+}
+
 
 /* Überschriften */
 h2{
