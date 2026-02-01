@@ -71,8 +71,13 @@
 
   <nav class="topbar" id="topbar">
     <div class="wrap nav-inner">
-      <div class="logo">MCS</div>
-      <div class="nav-links">
+      <a class="logo" href="#hero" aria-label="Home">MCS</a>
+  
+      <button class="menu-btn" id="menuBtn" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+  
+      <div class="nav-links" id="navLinks">
         <a href="#about">Über mich</a>
         <a href="#cv">Lebenslauf</a>
         <a href="#projects">Projekte</a>
@@ -80,9 +85,42 @@
         <a href="#qa">Fragebogen</a>
         <a href="#social">Social</a>
         <a href="#contact">Kontakt</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
       </div>
     </div>
   </nav>
+
+  <script>
+    // Topbar sichtbar nach Hero
+    const hero = document.getElementById("hero");
+    const topbar = document.getElementById("topbar");
+  
+    window.addEventListener("scroll", () => {
+      const heroHeight = hero.offsetHeight;
+      if (window.scrollY > heroHeight - 100) topbar.classList.add("visible");
+      else topbar.classList.remove("visible");
+    });
+  
+    // Mobile Menü
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+  
+    menuBtn.addEventListener("click", () => {
+      const open = navLinks.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      menuBtn.classList.toggle("open", open);
+    });
+  
+    // Menü schließt nach Klick auf Link (Handy)
+    navLinks.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuBtn.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+  </script>
 
 
   <main class="wrap">
