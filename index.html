@@ -4,307 +4,465 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Marcos Caprile-Santos</title>
-  <meta name="description" content="Persönliche Website von Marcos Caprile-Santos: Lebenslauf, Projekte, Aktivitäten, Fragebogen, Kontakt & Social Media." />
+  <meta name="description" content="Marcos Caprile-Santos – Projekte, Lebenslauf, Aktivitäten, Kontakt." />
+
+  <!-- Modern font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-  <header class="wrap header">
-    <div class="brand">
-      <h1>Marcos Caprile-Santos</h1>
-      <p class="motto">“Dreaming is easy. Turning it into reality takes work. I choose to work.”</p>
-       <p class="sub">Schüler (Q1) · Builder · MINT</p>
-    </div>
 
-    <nav class="nav" aria-label="Navigation">
-      <a href="#about">Über mich</a>
-      <a href="#cv">Lebenslauf</a>
-      <a href="#projects">Projekte</a>
-      <a href="#activities">Activities</a>
-      <a href="#qa">Fragebogen</a>
-      <a href="#social">Social Media</a>
-      <a href="#contact">Kontakt</a>
-      <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html">Datenschutz</a>
-    </nav>
+<body>
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="logo" href="#top" aria-label="Startseite">
+        <span class="logo-dot"></span>
+        <span>Marcos</span>
+      </a>
+
+      <nav class="nav" aria-label="Navigation">
+        <a href="#about">Über mich</a>
+        <a href="#cv">Lebenslauf</a>
+        <a href="#projects">Projekte</a>
+        <a href="#activities">Activities</a>
+        <a href="#qa">Fragebogen</a>
+        <a href="#social">Social</a>
+        <a href="#contact">Kontakt</a>
+      </nav>
+
+      <a class="btn btn-primary" href="#contact">Kontakt</a>
+    </div>
   </header>
 
-  <main class="wrap">
-    <!-- Über mich -->
-    <section id="about" class="card">
-      <h2>Über mich</h2>
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-left">
+          <p class="badge">Schüler (Q1) · Builder · MINT · Düsseldorf</p>
+          <h1 class="title">
+            Marcos Caprile-Santos
+          </h1>
 
-      <dl class="facts">
-        <div><dt>Name</dt><dd>Marcos Caprile-Santos</dd></div>
-        <div><dt>Geboren</dt><dd>11.05.2008 in Madrid</dd></div>
-        <div><dt>Wohnort</dt><dd>Düsseldorf</dd></div>
-        <div><dt>Ausbildung</dt><dd>Schüler (gymnasiale Oberstufe)</dd></div>
-        <div>
-          <dt>Tätigkeiten / Jobs</dt>
-          <dd>
-            Volleyball-Jugendtrainer &amp; Jugendwart bei
-            <a href="https://www.tv-angermund.de/tva-aktuell/volleyball/" target="_blank" rel="noopener noreferrer">
-              TV Angermund 1909 e.V.
-            </a><br/>
-            Nachhilfe &amp; MINT-Unterstützung
-          </dd>
-        </div>
-      </dl>
-    </section>
-
-    <!-- Lebenslauf -->
-    <section id="cv" class="card">
-      <h2>Lebenslauf</h2>
-
-      <ul class="timeline">
-        <li>
-          <span class="when">2014 – 2018</span>
-          <span class="what">
-            <a href="https://www.friedrichvonspeeschule.de/" target="_blank" rel="noopener noreferrer">
-              Friedrich-von-Spee Grundschule
-            </a>
-          </span>
-        </li>
-        <li>
-          <span class="when">2018 – heute</span>
-          <span class="what">
-            <a href="https://www.kgl-ratingen.de/" target="_blank" rel="noopener noreferrer">
-              Kopernikus Gymnasium Lintorf
-            </a>
-            (aktuell Q1)
-          </span>
-        </li>
-      </ul>
-
-      <div class="small-block">
-        <p class="muted">
-          Schwerpunkte: Mathematik, Informatik, Physik · Wettbewerbe &amp; Förderprogramme ·
-          Engagement in Technik-, Forschungs- und Bildungsprojekten
-        </p>
-      </div>
-    </section>
-
-    <!-- Projekte -->
-    <section id="projects" class="card">
-      <h2>Projekte</h2>
-
-      <h3 class="mini">Apps &amp; Software</h3>
-        <a class="project-card">
-          <h4>StudyConnect</h4>
-          <p>Lerngruppen- & Nachhilfeplattform.</p>
-        </a>
-
-        <a href="#" class="project-card">
-          <h4>Thoughtra</h4>
-          <p>Kreative Social-Media-App.</p>
-        </a>
-
-        <a href="#" class="project-card">
-          <h4>Impostor Games</h4>
-          <p>
-            Multiplayer-Partyspiel – inspiriert von Splash (Party-Spiele), als Webversion
-            für beschränkte Schul-iPads.
+          <p class="lead">
+            Ich baue Projekte, lerne schnell und setze Ideen um – von Software bis Team-Organisation.
           </p>
-        </a>
-      
-        <a href="#" class="project-card">
-          <h4>SecureScreen SDK</h4>
-          <p>Datenschutz gegen das Abfotografieren fremder Bildschirme.</p>
-        </a>
 
-        <a href="#" class="project-card">
-          <h4>N.E.W.T.O.N.</h4>
-          <p>Persönlicher KI-Assistent (inspiriert von J.A.R.V.I.S.).</p>
-        </a>
-      </div>
+          <div class="motto-block">
+            <p class="motto-label">Motto</p>
+            <p class="motto-text">Dreaming is easy. Turning it into reality takes work. I choose to work.</p>
+          </div>
 
-      <h3 class="mini">Forschung &amp; Ideen</h3>
-      <ul class="bullets">
-        <li>Dreaming-AI-Konzept</li>
-      </ul>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">Projekte ansehen</a>
+            <a class="btn btn-ghost" href="#cv">Lebenslauf</a>
+          </div>
 
-      <h3 class="mini">Content &amp; Kreatives</h3>
-      <ul class="bullets">
-        <li>Bildungscontent („Brain Fuel“)</li>
-        <li>UI/UX- &amp; Branding-Konzepte</li>
-      </ul>
-    </section>
-
-    <!-- Activities -->
-    <section id="activities" class="card">
-      <h2>Sonstige Activities</h2>
-
-      <div class="cols">
-        <div>
-          <h3 class="mini">Sport</h3>
-          <ul class="bullets">
-            <li>Leistungsvolleyball</li>
-            <li>Jugendtrainer &amp; Aufbau neuer Teams</li>
-            <li>Schulischer Langstreckenlauf</li>
-          </ul>
-
-          <h3 class="mini">Kreativ</h3>
-          <ul class="bullets">
-            <li>Content erstellen</li>
-            <li>Interesse an Design &amp; Produktideen</li>
-          </ul>
+          <div class="hero-meta">
+            <span>Düsseldorf</span>
+            <span>11.05.2008 · Madrid</span>
+          </div>
         </div>
 
-        <div>
-          <h3 class="mini">Schule &amp; Verantwortung</h3>
-          <ul class="bullets">
-            <li>Schulsanitäter (leitend im SSD aktiv)</li>
-            <li>Engagement bei Schulprojekten</li>
-            <li>Film- und Social-Media-AG</li>
-            <li>Teil des Abi-Merch-Komitees</li>
-          </ul>
+        <aside class="hero-right">
+          <div class="card card-compact">
+            <h2 class="card-title">Quick Links</h2>
+            <div class="quicklinks">
+              <a class="quicklink" href="https://www.tv-angermund.de/tva-aktuell/volleyball/" target="_blank" rel="noopener noreferrer">
+                TV Angermund Volleyball
+                <span class="ext">↗</span>
+              </a>
+              <a class="quicklink" href="https://www.kgl-ratingen.de/" target="_blank" rel="noopener noreferrer">
+                Kopernikus-Gymnasium Lintorf
+                <span class="ext">↗</span>
+              </a>
+              <a class="quicklink" href="#contact">
+                Kontakt
+                <span class="ext">→</span>
+              </a>
+            </div>
+          </div>
 
-          <h3 class="mini">Akademisch</h3>
-          <ul class="bullets">
-            <li>Mathe- &amp; Informatik-Wettbewerbe</li>
-            <li>MINT-Programme &amp; Symposien</li>
-            <li>Academic Research</li>
-          </ul>
-        </div>
+          <div class="card card-compact">
+            <h2 class="card-title">Schwerpunkte</h2>
+            <div class="chips">
+              <span class="chip">Mathematik</span>
+              <span class="chip">Informatik</span>
+              <span class="chip">Physik</span>
+              <span class="chip">Projektbau</span>
+              <span class="chip">Leadership</span>
+            </div>
+          </div>
+        </aside>
       </div>
     </section>
 
-    <!-- Fragebogen -->
-    <section id="qa" class="card">
-      <h2>Persönlicher Fragebogen</h2>
-
-      <div class="qa">
-        <div class="qa-row">
-          <div class="q">Was bedeutet für Dich echtes Glück?</div>
-          <div class="a">Wenn der unwahrscheinlichste Fall eintritt.</div>
+    <!-- Content -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head">
+          <h2>Über mich</h2>
+          <p>Kurze Fakten – klar und übersichtlich.</p>
         </div>
 
-        <div class="qa-row">
-          <div class="q">Was macht Dich innerlich unruhig?</div>
-          <div class="a">Wenn ich den Sinn oder die Logik hinter etwas nicht verstehe.</div>
-        </div>
-
-        <div class="qa-row">
-          <div class="q">Wo fühlst Du Dich zuhause?</div>
-          <div class="a">In der Sporthalle beim Volleyball.</div>
-        </div>
-
-        <div class="qa-row">
-          <div class="q">Welche Monate magst Du besonders?</div>
-          <div class="a">Mai und August.</div>
-        </div>
-
-        <div class="qa-row">
-          <div class="q">Welche Musik passt am häufigsten zu Deiner Stimmung?</div>
-          <div class="a">Pop und Party-Hymnen der 2000er und 2010er.</div>
-        </div>
-
-        <div class="qa-row">
-          <div class="q">Welche Bücher oder Geschichten begleiten Dich schon lange?</div>
-          <div class="a">Geschichten über große Ideen und Visionen.</div>
-        </div>
-
-        <div class="qa-row">
-          <div class="q">Gibt es einen Film, den Du immer wieder sehen könntest?</div>
-          <div class="a">Die Star-Wars-Filme.</div>
-        </div>
-
-        <div class="qa-row">
-          <div class="q">Welches Essen verbindest Du mit guter Laune?</div>
-          <div class="a">Pasta Carbonara oder Sushi.</div>
-        </div>
-
-        <div class="qa-row">
-          <div class="q">Welche Farbe beruhigt Dich?</div>
-          <div class="a">Weiß.</div>
-        </div>
-
-        <div class="qa-row">
-          <div class="q">Was ist deine Lieblingszahl?</div>
-          <div class="a">2, 0, 1, π und 3.</div>
-        </div>
-
-        <div class="qa-row">
-          <div class="q">Welches Tier wärst Du gern?</div>
-          <div class="a">Ein Adler.</div>
-        </div>
-
-        <div class="qa-row">
-          <div class="q">Welche Schulfächer magst Du besonders?</div>
-          <div class="a">Mathematik, Informatik und Philosophie.</div>
-        </div>
-
-        <div class="qa-row">
-          <div class="q">Was machst Du am liebsten, wenn Du absolut nichts musst?</div>
-          <div class="a">Ein neues Projekt starten.</div>
-        </div>
-
-        <div class="qa-row">
-          <div class="q">Welche Superfähigkeit hättest Du gern?</div>
-          <div class="a">Supergeschwindigkeit, um mehr Ideen in kürzerer Zeit umzusetzen.</div>
-        </div>
-
-        <div class="qa-row">
-          <div class="q">Wie willst Du auf Dein Leben zurückblicken?</div>
-          <div class="a">Mit dem Gefühl, viel aufgebaut, viel erlebt und meine Möglichkeiten wirklich genutzt zu haben.</div>
-        </div>
-
-        <div class="qa-row">
-          <div class="q">In welcher geistigen Verfassung bist Du gerade?</div>
-          <div class="a">Motiviert, voller Ideen – und ein kleines bisschen zu wenig Geduld für Stillstand.</div>
+        <div class="card">
+          <dl class="facts">
+            <div><dt>Name</dt><dd>Marcos Caprile-Santos</dd></div>
+            <div><dt>Geboren</dt><dd>11.05.2008 in Madrid</dd></div>
+            <div><dt>Wohnort</dt><dd>Düsseldorf</dd></div>
+            <div><dt>Ausbildung</dt><dd>Schüler (gymnasiale Oberstufe)</dd></div>
+            <div>
+              <dt>Tätigkeiten</dt>
+              <dd>
+                Volleyball-Jugendtrainer &amp; Jugendwart bei
+                <a href="https://www.tv-angermund.de/tva-aktuell/volleyball/" target="_blank" rel="noopener noreferrer">
+                  TV Angermund 1909 e.V.
+                </a><br/>
+                Nachhilfe &amp; MINT-Unterstützung
+              </dd>
+            </div>
+          </dl>
         </div>
       </div>
     </section>
 
-    <!-- Social Media -->
-    <section id="social" class="card">
-      <h2>Mein Social Media</h2>
+    <section class="section" id="cv">
+      <div class="container">
+        <div class="section-head">
+          <h2>Lebenslauf</h2>
+          <p>Das Wesentliche – Fokus auf schulischer Laufbahn.</p>
+        </div>
 
-      <ul class="social">
-        <li>
-          <span class="label">TikTok</span>
-          <span class="handles">
-            <a href="https://www.tiktok.com/@marukosu._" target="_blank" rel="noopener noreferrer">@marukosu._</a>
-            <a href="https://www.tiktok.com/@brain.fuel_" target="_blank" rel="noopener noreferrer">@brain.fuel_</a>
-          </span>
-        </li>
+        <div class="card">
+          <div class="timeline">
+            <div class="t-row">
+              <div class="t-when">2014 – 2018</div>
+              <div class="t-what">
+                <a href="https://www.friedrichvonspeeschule.de/" target="_blank" rel="noopener noreferrer">
+                  Friedrich-von-Spee Grundschule
+                </a>
+              </div>
+            </div>
 
-        <li>
-          <span class="label">YouTube</span>
-          <span class="handles">
-            <a href="https://www.youtube.com/@marukosu._" target="_blank" rel="noopener noreferrer">@marukosu._</a>
-          </span>
-        </li>
+            <div class="t-row">
+              <div class="t-when">2018 – heute</div>
+              <div class="t-what">
+                <a href="https://www.kgl-ratingen.de/" target="_blank" rel="noopener noreferrer">
+                  Kopernikus-Gymnasium Lintorf
+                </a>
+                <span class="muted">(aktuell Q1)</span>
+              </div>
+            </div>
+          </div>
 
-        <li>
-          <span class="label">Instagram</span>
-          <span class="handles">
-            <a href="https://www.instagram.com/marcos_scm/" target="_blank" rel="noopener noreferrer">@marcos_scm</a>
-          </span>
-        </li>
-      </ul>
-    </section>
+          <div class="divider"></div>
 
-    <!-- Kontakt -->
-    <section id="contact" class="card">
-      <h2>Kontakt</h2>
-
-      <div class="contact">
-        <p><strong>Privat:</strong> <a href="mailto:marcos@caprile.net">marcos@caprile.net</a></p>
-        <p><strong>Schule:</strong> <a href="mailto:m.caprilesantos@kgl.schule">m.caprilesantos@kgl.schule</a></p>
-        <p><strong>Volleyball:</strong> <a href="mailto:marcos.caprile@tv-angermund.de">marcos.caprile@tv-angermund.de</a></p>
-        <p><strong>Telefon:</strong> <a href="tel:+491727723349">+49 172 7723349</a></p>
+          <ul class="bullets">
+            <li>Starker Schwerpunkt in <strong>Mathematik, Informatik und Physik</strong></li>
+            <li>Teilnahme an Wettbewerben &amp; Förderprogrammen</li>
+            <li>Engagement in Technik-, Forschungs- und Bildungsprojekten</li>
+          </ul>
+        </div>
       </div>
-
-      <p class="fine">
-        <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a>
-      </p>
     </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-head">
+          <h2>Projekte</h2>
+          <p>Auswahl an Apps, Ideen und Content.</p>
+        </div>
+
+        <div class="grid">
+          <a class="p-card" href="#" aria-label="StudyConnect">
+            <div class="p-top">
+              <h3>StudyConnect</h3>
+              <span class="tag">App</span>
+            </div>
+            <p>Lerngruppen- &amp; Nachhilfeplattform.</p>
+            <span class="p-more">Mehr →</span>
+          </a>
+
+          <a class="p-card" href="#" aria-label="Thoughtra">
+            <div class="p-top">
+              <h3>Thoughtra</h3>
+              <span class="tag">App</span>
+            </div>
+            <p>Kreative Social-Media-App.</p>
+            <span class="p-more">Mehr →</span>
+          </a>
+
+          <a class="p-card" href="#" aria-label="Impostor Games">
+            <div class="p-top">
+              <h3>Impostor Games</h3>
+              <span class="tag">Game</span>
+            </div>
+            <p>Multiplayer-Partyspiel – als Webversion für Schul-iPads.</p>
+            <span class="p-more">Mehr →</span>
+          </a>
+
+          <a class="p-card" href="#" aria-label="SecureScreen SDK">
+            <div class="p-top">
+              <h3>SecureScreen SDK</h3>
+              <span class="tag">Privacy</span>
+            </div>
+            <p>Datenschutz gegen das Abfotografieren fremder Bildschirme.</p>
+            <span class="p-more">Mehr →</span>
+          </a>
+
+          <a class="p-card" href="#" aria-label="N.E.W.T.O.N.">
+            <div class="p-top">
+              <h3>N.E.W.T.O.N.</h3>
+              <span class="tag">AI</span>
+            </div>
+            <p>Persönlicher KI-Assistent (inspiriert von J.A.R.V.I.S.).</p>
+            <span class="p-more">Mehr →</span>
+          </a>
+
+          <a class="p-card" href="#" aria-label="Brain Fuel">
+            <div class="p-top">
+              <h3>Brain Fuel</h3>
+              <span class="tag">Content</span>
+            </div>
+            <p>Bildungscontent &amp; Format-Experimente (Short-Form).</p>
+            <span class="p-more">Mehr →</span>
+          </a>
+        </div>
+
+        <div class="card">
+          <div class="two-cols">
+            <div>
+              <h3 class="subhead">Forschung &amp; Ideen</h3>
+              <ul class="bullets">
+                <li>Dreaming-AI-Konzept</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="subhead">UI/UX &amp; Branding</h3>
+              <ul class="bullets">
+                <li>UI/UX- und Branding-Konzepte</li>
+                <li>Produktideen &amp; Design-Iterationen</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="activities">
+      <div class="container">
+        <div class="section-head">
+          <h2>Sonstige Activities</h2>
+          <p>Sport, Verantwortung, Akademisches, Kreatives.</p>
+        </div>
+
+        <div class="card">
+          <div class="two-cols">
+            <div>
+              <h3 class="subhead">Sport</h3>
+              <ul class="bullets">
+                <li>Leistungsvolleyball</li>
+                <li>Jugendtrainer &amp; Aufbau neuer Teams</li>
+                <li>Schulischer Langstreckenlauf</li>
+              </ul>
+
+              <h3 class="subhead">Kreativ</h3>
+              <ul class="bullets">
+                <li>Content erstellen</li>
+                <li>Interesse an Design &amp; Produktideen</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="subhead">Schule &amp; Verantwortung</h3>
+              <ul class="bullets">
+                <li>Schulsanitäter (leitend im SSD aktiv)</li>
+                <li>Engagement bei Schulprojekten</li>
+                <li>Film- und Social-Media-AG</li>
+                <li>Teil des Abi-Merch-Komitees</li>
+              </ul>
+
+              <h3 class="subhead">Akademisch</h3>
+              <ul class="bullets">
+                <li>Mathe- &amp; Informatik-Wettbewerbe</li>
+                <li>MINT-Programme &amp; Symposien</li>
+                <li>Academic Research</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="qa">
+      <div class="container">
+        <div class="section-head">
+          <h2>Persönlicher Fragebogen</h2>
+          <p>Kurz, ehrlich, „Axel-Vibe“ – aber deiner.</p>
+        </div>
+
+        <div class="card">
+          <div class="qa">
+            <div class="qa-row">
+              <div class="q">Was bedeutet für Dich echtes Glück?</div>
+              <div class="a">Wenn der unwahrscheinlichste Fall eintritt.</div>
+            </div>
+
+            <div class="qa-row">
+              <div class="q">Was macht Dich innerlich unruhig?</div>
+              <div class="a">Wenn ich den Sinn oder die Logik hinter etwas nicht verstehe.</div>
+            </div>
+
+            <div class="qa-row">
+              <div class="q">Wo fühlst Du Dich zuhause?</div>
+              <div class="a">In der Sporthalle beim Volleyball.</div>
+            </div>
+
+            <div class="qa-row">
+              <div class="q">Welche Monate magst Du besonders?</div>
+              <div class="a">Mai und August.</div>
+            </div>
+
+            <div class="qa-row">
+              <div class="q">Welche Musik passt am häufigsten zu Deiner Stimmung?</div>
+              <div class="a">Pop und Party-Hymnen der 2000er und 2010er.</div>
+            </div>
+
+            <div class="qa-row">
+              <div class="q">Welche Bücher oder Geschichten begleiten Dich schon lange?</div>
+              <div class="a">Geschichten über große Ideen und Visionen.</div>
+            </div>
+
+            <div class="qa-row">
+              <div class="q">Gibt es einen Film, den Du immer wieder sehen könntest?</div>
+              <div class="a">Die Star-Wars-Filme.</div>
+            </div>
+
+            <div class="qa-row">
+              <div class="q">Welches Essen verbindest Du mit guter Laune?</div>
+              <div class="a">Pasta Carbonara oder Sushi.</div>
+            </div>
+
+            <div class="qa-row">
+              <div class="q">Welche Farbe beruhigt Dich?</div>
+              <div class="a">Weiß.</div>
+            </div>
+
+            <div class="qa-row">
+              <div class="q">Was ist deine Lieblingszahl?</div>
+              <div class="a">2, 0, 1, π und 3.</div>
+            </div>
+
+            <div class="qa-row">
+              <div class="q">Welches Tier wärst Du gern?</div>
+              <div class="a">Ein Adler.</div>
+            </div>
+
+            <div class="qa-row">
+              <div class="q">Welche Schulfächer magst Du besonders?</div>
+              <div class="a">Mathematik, Informatik und Philosophie.</div>
+            </div>
+
+            <div class="qa-row">
+              <div class="q">Was machst Du am liebsten, wenn Du absolut nichts musst?</div>
+              <div class="a">Ein neues Projekt starten.</div>
+            </div>
+
+            <div class="qa-row">
+              <div class="q">Welche Superfähigkeit hättest Du gern?</div>
+              <div class="a">Supergeschwindigkeit, um mehr Ideen in kürzerer Zeit umzusetzen.</div>
+            </div>
+
+            <div class="qa-row">
+              <div class="q">Wie willst Du auf Dein Leben zurückblicken?</div>
+              <div class="a">Mit dem Gefühl, viel aufgebaut, viel erlebt und meine Möglichkeiten wirklich genutzt zu haben.</div>
+            </div>
+
+            <div class="qa-row">
+              <div class="q">In welcher geistigen Verfassung bist Du gerade?</div>
+              <div class="a">Motiviert, voller Ideen – und ein kleines bisschen zu wenig Geduld für Stillstand.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="social">
+      <div class="container">
+        <div class="section-head">
+          <h2>Mein Social Media</h2>
+          <p>Direkt zu den Accounts.</p>
+        </div>
+
+        <div class="card">
+          <div class="social">
+            <a class="social-row" href="https://www.tiktok.com/@marukosu._" target="_blank" rel="noopener noreferrer">
+              <span class="social-name">TikTok</span>
+              <span class="social-handle">@marukosu._</span>
+              <span class="ext">↗</span>
+            </a>
+            <a class="social-row" href="https://www.tiktok.com/@brain.fuel_" target="_blank" rel="noopener noreferrer">
+              <span class="social-name">TikTok</span>
+              <span class="social-handle">@brain.fuel_</span>
+              <span class="ext">↗</span>
+            </a>
+            <a class="social-row" href="https://www.youtube.com/@marukosu._" target="_blank" rel="noopener noreferrer">
+              <span class="social-name">YouTube</span>
+              <span class="social-handle">@marukosu._</span>
+              <span class="ext">↗</span>
+            </a>
+            <a class="social-row" href="https://www.instagram.com/marcos_scm/" target="_blank" rel="noopener noreferrer">
+              <span class="social-name">Instagram</span>
+              <span class="social-handle">@marcos_scm</span>
+              <span class="ext">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-head">
+          <h2>Kontakt</h2>
+          <p>Einfach &amp; direkt.</p>
+        </div>
+
+        <div class="card contact">
+          <a class="contact-row" href="mailto:marcos@caprile.net">
+            <span class="k">Privat</span><span class="v">marcos@caprile.net</span><span class="ext">→</span>
+          </a>
+          <a class="contact-row" href="mailto:m.caprilesantos@kgl.schule">
+            <span class="k">Schule</span><span class="v">m.caprilesantos@kgl.schule</span><span class="ext">→</span>
+          </a>
+          <a class="contact-row" href="mailto:marcos.caprile@tv-angermund.de">
+            <span class="k">Volleyball</span><span class="v">marcos.caprile@tv-angermund.de</span><span class="ext">→</span>
+          </a>
+          <a class="contact-row" href="tel:+491727723349">
+            <span class="k">Telefon</span><span class="v">+49 172 7723349</span><span class="ext">→</span>
+          </a>
+
+          <div class="footer-links">
+            <a href="impressum.html">Impressum</a>
+            <span class="dot">•</span>
+            <a href="datenschutz.html">Datenschutz</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <span>© <span id="y"></span> Marcos Caprile-Santos</span>
+        <span class="muted">Built simple. Built clean.</span>
+      </div>
+    </footer>
+
   </main>
-
-  <footer class="wrap footer">
-    <p>© <span id="y"></span> Marcos Caprile-Santos</p>
-    <p class="muted">Minimalistische persönliche Website.</p>
-  </footer>
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
