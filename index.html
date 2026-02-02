@@ -147,7 +147,7 @@
     </section>
 
     <!-- Lebenslauf -->
-    <section id="cv" class="card">
+    <section id="cv" class="card reveal">
       <h2>Lebenslauf</h2>
 
       <ul class="timeline stagger">
@@ -227,7 +227,7 @@
     </section>
 
     <!-- Activities -->
-    <section id="activities" class="card">
+    <section id="activities" class="card reveal">
       <h2>Sonstige Activities</h2>
 
       <div class="cols">
@@ -266,7 +266,7 @@
     </section>
 
     <!-- Fragebogen -->
-    <section id="qa" class="card">
+    <section id="qa" class="card reveal">
       <h2>Persönlicher Fragebogen</h2>
 
       <div class="qa stagger">
@@ -353,7 +353,7 @@
     </section>
 
     <!-- Social Media -->
-    <section id="social" class="card">
+    <section id="social" class="card reveal">
       <h2>Mein Social Media</h2>
 
       <ul class="social stagger">
@@ -382,7 +382,7 @@
     </section>
 
     <!-- Kontakt -->
-    <section id="contact" class="card">
+    <section id="contact" class="card reveal">
       <h2>Kontakt</h2>
 
       <div class="contact">
@@ -415,6 +415,7 @@
   </script>
   <script>
     // ===== Footer year (falls du es nutzt) =====
+    document.documentElement.classList.add("js");
     const y = document.getElementById("y");
     if (y) y.textContent = new Date().getFullYear();
   
