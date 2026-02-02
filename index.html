@@ -401,20 +401,76 @@
       </p>
   </footer>
   <script>
-  const hero = document.getElementById("hero");
-  const topbar = document.getElementById("topbar");
-
-  window.addEventListener("scroll", () => {
-    const heroHeight = hero.offsetHeight;
-    if (window.scrollY > heroHeight - 100) {
-      topbar.classList.add("visible");
-    } else {
-      topbar.classList.remove("visible");
-    }
-  });
-</script>
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
+    const hero = document.getElementById("hero");
+    const topbar = document.getElementById("topbar");
+  
+    window.addEventListener("scroll", () => {
+      const heroHeight = hero.offsetHeight;
+      if (window.scrollY > heroHeight - 100) {
+        topbar.classList.add("visible");
+      } else {
+        topbar.classList.remove("visible");
+      }
+    });
   </script>
+  <script>
+    // ===== Footer year (falls du es nutzt) =====
+    const y = document.getElementById("y");
+    if (y) y.textContent = new Date().getFullYear();
+  
+    // ===== Topbar sichtbar nach Hero =====
+    const hero = document.getElementById("hero");
+    const topbar = document.getElementById("topbar");
+  
+    if (hero && topbar) {
+      window.addEventListener("scroll", () => {
+        const heroHeight = hero.offsetHeight;
+        if (window.scrollY > heroHeight - 100) topbar.classList.add("visible");
+        else topbar.classList.remove("visible");
+      });
+    }
+  
+    // ===== Mobile Menü (nur wenn du menuBtn/navLinks eingebaut hast) =====
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+  
+    if (menuBtn && navLinks){
+      menuBtn.addEventListener("click", () => {
+        const open = navLinks.classList.toggle("open");
+        menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+        menuBtn.classList.toggle("open", open);
+      });
+  
+      navLinks.querySelectorAll("a").forEach(a => {
+        a.addEventListener("click", () => {
+          navLinks.classList.remove("open");
+          menuBtn.classList.remove("open");
+          menuBtn.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
+  
+    // ===== Scroll Reveal Animations =====
+    const revealEls = document.querySelectorAll(".reveal, .stagger");
+  
+    if (!("IntersectionObserver" in window)) {
+      revealEls.forEach(el => el.classList.add("in"));
+    } else {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in");
+            io.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: "0px 0px -8% 0px"
+      });
+  
+      revealEls.forEach(el => io.observe(el));
+    }
+  </script>
+
 </body>
 </html>
