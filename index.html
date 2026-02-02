@@ -401,14 +401,30 @@
       </p>
   </footer>
   
-<script>
-  // Setzt für alle reveal/stagger Elemente beim Laden "in"
-  window.addEventListener("load", () => {
-    const els = document.querySelectorAll(".reveal, .stagger");
-    // kleine Verzögerung, damit CSS-Startzustand wirklich gerendert ist
-    setTimeout(() => els.forEach(el => el.classList.add("in")), 60);
-  });
-</script>
+  <script>
+    window.addEventListener("load", () => {
+      const els = document.querySelectorAll(".reveal, .stagger");
+      if (!els.length) return;
+  
+      // Fallback: wenn kein IntersectionObserver verfügbar
+      if (!("IntersectionObserver" in window)) {
+        setTimeout(() => els.forEach(el => el.classList.add("in")), 60);
+        return;
+      }
+  
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in");
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -15% 0px" });
+  
+      els.forEach(el => io.observe(el));
+    });
+  </script>
+
 
 </body>
 </html>
