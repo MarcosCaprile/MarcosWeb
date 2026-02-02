@@ -554,6 +554,11 @@
     =============================== */
     const y = document.getElementById("y");
     if (y) y.textContent = new Date().getFullYear();
+    // Sicherheitsnetz: falls irgendwas später crasht, wird trotzdem alles sichtbar
+    setTimeout(() => {
+      document.querySelectorAll(".reveal, .stagger").forEach(el => el.classList.add("in"));
+    }, 150);
+
   </script>
 
 
