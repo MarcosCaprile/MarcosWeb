@@ -428,21 +428,25 @@
   
   <script>
     (() => {
-      // ===== Basis Flags =====
+      // Flags
       document.documentElement.classList.add("js");
     
-      // ===== Footer year =====
+      // Footer year
       const y = document.getElementById("y");
       if (y) y.textContent = new Date().getFullYear();
     
-      // ===== Topbar show/hide =====
+      // Hero intro (macht den oberen Bereich sichtbar)
+      window.addEventListener("load", () => {
+        const heroInner = document.querySelector(".hero-inner");
+        if (heroInner) heroInner.classList.add("is-in");
+      });
+    
+      // Topbar show/hide (Startseite) + immer sichtbar (Projektseiten)
       const hero = document.getElementById("hero");
       const topbar = document.getElementById("topbar");
     
-      // Projektseiten: kein Hero -> Topbar immer sichtbar
       if (topbar && !hero) topbar.classList.add("visible");
     
-      // Startseite: Hero -> Topbar erst nach Scroll
       if (topbar && hero) {
         const updateTopbar = () => {
           const heroHeight = hero.offsetHeight || 0;
@@ -453,7 +457,7 @@
         window.addEventListener("load", updateTopbar);
       }
     
-      // ===== Mobile Menu =====
+      // Mobile Menu
       const menuBtn = document.getElementById("menuBtn");
       const navLinks = document.getElementById("navLinks");
     
@@ -463,9 +467,24 @@
           menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
           menuBtn.classList.toggle("open", open);
         });
+    
+        navLinks.querySelectorAll("a").forEach(a => {
+          a.addEventListener("click", () => {
+            navLinks.classList.remove("open");
+            menuBtn.classList.remove("open");
+            menuBtn.setAttribute("aria-expanded", "false");
+    
+            const dd = document.getElementById("projectsDropdown");
+            const btn = dd ? dd.querySelector(".dropbtn") : null;
+            if (dd && btn) {
+              dd.classList.remove("open");
+              btn.setAttribute("aria-expanded", "false");
+            }
+          });
+        });
       }
     
-      // ===== Dropdown (Mobile Tap) =====
+      // Dropdown (Mobile Tap)
       const projectsDropdown = document.getElementById("projectsDropdown");
       const dropBtn = projectsDropdown ? projectsDropdown.querySelector(".dropbtn") : null;
     
@@ -477,21 +496,20 @@
         });
       }
     
-      // ===== Scroll Reveal (safe) =====
-      // WICHTIG: reveal-on wird NICHT im head gesetzt,
-      // sondern nur hier, wenn JS wirklich läuft.
-      const enableReveal = () => {
+      // Scroll Reveal – pro Block beim Scrollen
+      window.addEventListener("load", () => {
+        // Reveal aktivieren (CSS wird erst JETZT scharf geschaltet)
         document.documentElement.classList.add("reveal-on");
     
         const els = document.querySelectorAll(".reveal, .stagger");
         if (!els.length) return;
     
-        // Safety: spätestens nach 1s alles sichtbar machen
+        // Safety nur, wenn IO nie feuert
+        let fired = false;
         const safety = setTimeout(() => {
-          els.forEach(el => el.classList.add("in"));
-        }, 1000);
+          if (!fired) els.forEach(el => el.classList.add("in"));
+        }, 1400);
     
-        // Kein IntersectionObserver -> sofort einblenden
         if (!("IntersectionObserver" in window)) {
           els.forEach(el => el.classList.add("in"));
           clearTimeout(safety);
@@ -501,19 +519,22 @@
         const io = new IntersectionObserver((entries, obs) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
+              fired = true;
               entry.target.classList.add("in");
               obs.unobserve(entry.target);
             }
           });
-        }, { threshold: 0.12, rootMargin: "0px 0px -15% 0px" });
+        }, {
+          threshold: 0.18,                 // später triggern -> weniger “alles gleichzeitig”
+          rootMargin: "0px 0px -12% 0px"    // erst wenn Block wirklich reinkommt
+        });
     
         els.forEach(el => io.observe(el));
-      };
-    
-      window.addEventListener("load", enableReveal);
+      });
     
     })();
-    </script>
+  </script>
+
 
 
 </body>
