@@ -756,7 +756,7 @@ html.reveal-on .stagger.in > *:nth-child(12){ transition-delay: .60s; }
 /* ===== Rolex-Style Scroll Indicator ===== */
 .scroll-indicator{
   position:absolute;
-  bottom:70px;              /* höher als vorher */
+  bottom:90px;              /* höher als vorher */
   left:50%;
   transform:translateX(-50%);
   opacity:.6;
