@@ -500,7 +500,7 @@ dd{margin:0}
 
 .dropmenu{
   position: absolute;
-  top: calc(100% + 12px);
+  top: calc(100% + 8px);  /* kleinerer Gap */
   right: 0;
   min-width: 260px;
 
@@ -514,6 +514,16 @@ dd{margin:0}
 
   display: none;
   z-index: 1100;
+}
+
+/* Hover-Brücke gegen “Menü verschwindet” */
+.dropmenu::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:-10px;     /* deckt den Spalt ab */
+  height:10px;
 }
 
 .dropmenu a{
