@@ -598,11 +598,17 @@ body{
 }
 
 /* Nur wenn JS aktiv ist, verstecken wir initial und animieren */
-.js .reveal{
+
+.reveal{
   opacity: 0;
   transform: translateY(18px);
   transition: opacity .7s ease, transform .7s ease;
-  will-change: opacity, transform;
+}
+
+.stagger > *{
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .65s ease, transform .65s ease;
 }
 
 .js .reveal.in{
@@ -610,11 +616,6 @@ body{
   transform: translateY(0);
 }
 
-.js .stagger > *{
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity .65s ease, transform .65s ease;
-}
 
 .js .stagger.in > *{
   opacity: 1;
