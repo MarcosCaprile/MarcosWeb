@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Universe Simulator (Full) · Marcos Caprile-Santos</title>
+  <meta name="description" content="Universe Simulator – Full Version (Visual Simulator): rotate, zoom, speed, follow." />
+  <link rel="canonical" href="https://marcos.caprile.net/projects/universe-live.html" />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/styles.css?v=999" />
+</head>
+
+<body>
+  <nav class="topbar visible" id="topbar">
+    <div class="wrap nav-inner">
+      <a class="logo" href="/#hero" aria-label="Home">MCS</a>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="nav-links" id="navLinks">
+        <a href="/#about">Über mich</a>
+        <a href="/#cv">Lebenslauf</a>
+
+        <div class="dropdown" id="projectsDropdown">
+          <button class="dropbtn" aria-expanded="false">
+            Projekte <span class="chev"></span>
+          </button>
+          <div class="dropmenu" role="menu" aria-label="Projekte">
+            <a href="/projects/studyconnect.html">StudyConnect</a>
+            <a href="/projects/newton.html">N.E.W.T.O.N.</a>
+            <a href="/projects/thoughtra.html">Thoughtra</a>
+            <a href="/projects/impostor-games.html">Impostor Games</a>
+            <a href="/projects/securescreen.html">SecureScreen SDK</a>
+            <div class="dropsep"></div>
+            <a href="/projects/universe.html">Universe Simulator (Showcase)</a>
+            <a href="/projects/universe-live.html" aria-current="page">Universe Simulator (Full)</a>
+          </div>
+        </div>
+
+        <a href="/#activities">Activities</a>
+        <a href="/#qa">Fragebogen</a>
+        <a href="/#social">Social</a>
+        <a href="/#contact">Kontakt</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section class="card reveal">
+      <h2>Universe Simulator · Full Version</h2>
+      <p class="muted">
+        Visual Simulator (Canvas) – stabil auf allen Geräten.  
+        Drag = Rotate · Wheel/Pinch = Zoom · Follow = Kamera folgt
+      </p>
+    </section>
+
+    <section class="card reveal">
+      <div class="universe-ui">
+        <div class="universe-ui-top">
+          <div class="universe-ui-title">
+            <h3 class="mini" style="margin:0">Interactive Showcase</h3>
+            <div class="universe-ui-time" id="timeLabel">t = 0.00 Jahre (0 Tage)</div>
+          </div>
+
+          <div class="universe-ui-controls">
+            <label class="u-field">
+              <span>Tage / Schritt</span>
+              <input id="speed" type="range" min="0.1" max="50" step="0.1" value="1.0" />
+              <b id="speedVal">1.0</b>
+            </label>
+
+            <label class="u-field">
+              <span>Follow</span>
+              <select id="follow">
+                <option value="none">Keiner</option>
+                <option value="Merkur">Merkur</option>
+                <option value="Venus">Venus</option>
+                <option value="Erde">Erde</option>
+                <option value="Mond">Mond</option>
+                <option value="Mars">Mars</option>
+                <option value="Jupiter">Jupiter</option>
+                <option value="Saturn">Saturn</option>
+                <option value="Uranus">Uranus</option>
+                <option value="Neptun">Neptun</option>
+              </select>
+            </label>
+
+            <button class="u-btn" id="resetView" type="button">Reset View</button>
+          </div>
+        </div>
+
+        <div class="universe-canvas-2d">
+          <canvas id="cv"></canvas>
+        </div>
+
+        <div class="universe-ui-foot muted">
+          <span>Drag = Rotate</span> · <span>Wheel = Zoom</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card reveal">
+      <p class="fine"><a href="/projects/universe.html">← zurück zum Showcase</a></p>
+    </section>
+  </main>
+
+  <footer class="wrap footer">
+    <p>© <span id="y"></span> Marcos Caprile-Santos</p>
+  </footer>
+
+  <script>
+    // ===== basics =====
+    document.documentElement.classList.add("js");
+    const y = document.getElementById("y");
+    if (y) y.textContent = new Date().getFullYear();
+
+    // Mobile menu
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+    if (menuBtn && navLinks) {
+      menuBtn.addEventListener("click", () => {
+        const open = navLinks.classList.toggle("open");
+        menuBtn.classList.toggle("open", open);
+        menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+    }
+
+    // Dropdown (mobile tap)
+    const dd = document.getElementById("projectsDropdown");
+    const ddBtn = dd ? dd.querySelector(".dropbtn") : null;
+    if (dd && ddBtn) {
+      ddBtn.addEventListener("click", (e) => {
+        if (window.matchMedia("(max-width: 720px)").matches) {
+          e.preventDefault();
+          const open = dd.classList.toggle("open");
+          ddBtn.setAttribute("aria-expanded", open ? "true" : "false");
+        }
+      });
+    }
+
+    // ===== UI =====
+    const speed = document.getElementById("speed");
+    const speedVal = document.getElementById("speedVal");
+    const followSel = document.getElementById("follow");
+    const timeLabel = document.getElementById("timeLabel");
+    const resetBtn = document.getElementById("resetView");
+
+    speed.addEventListener("input", () => speedVal.textContent = Number(speed.value).toFixed(1));
+
+    // ===== Canvas pseudo-3D engine =====
+    const canvas = document.getElementById("cv");
+    const ctx = canvas.getContext("2d");
+
+    let W = 0, H = 0;
+    const DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+    function resize(){
+      const box = canvas.getBoundingClientRect();
+      W = Math.max(1, Math.floor(box.width));
+      H = Math.max(1, Math.floor(box.height));
+      canvas.width  = Math.floor(W * DPR);
+      canvas.height = Math.floor(H * DPR);
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    }
+
+    // camera / controls
+    let rotX = 0.55;       // tilt
+    let rotY = 0.85;       // yaw
+    let zoom = 1.0;
+
+    let dragging = false;
+    let lastX = 0, lastY = 0;
+
+    canvas.addEventListener("pointerdown", (e)=>{
+      dragging = true;
+      lastX = e.clientX; lastY = e.clientY;
+      canvas.setPointerCapture(e.pointerId);
+    });
+
+    canvas.addEventListener("pointermove", (e)=>{
+      if(!dragging) return;
+      const dx = e.clientX - lastX;
+      const dy = e.clientY - lastY;
+      lastX = e.clientX; lastY = e.clientY;
+
+      rotY += dx * 0.006;
+      rotX += dy * 0.006;
+      rotX = Math.max(0.15, Math.min(1.25, rotX));
+    });
+
+    canvas.addEventListener("pointerup", ()=> dragging=false);
+    canvas.addEventListener("pointercancel", ()=> dragging=false);
+
+    canvas.addEventListener("wheel", (e)=>{
+      e.preventDefault();
+      const s = e.deltaY > 0 ? 1.08 : 0.92;
+      zoom *= s;
+      zoom = Math.max(0.55, Math.min(2.2, zoom));
+    }, { passive:false });
+
+    function rot(v){
+      // rotate around Y then X
+      const cy = Math.cos(rotY), sy = Math.sin(rotY);
+      const cx = Math.cos(rotX), sx = Math.sin(rotX);
+
+      // y-rotation
+      let x = v.x * cy + v.z * sy;
+      let z = -v.x * sy + v.z * cy;
+      let y = v.y;
+
+      // x-rotation
+      let y2 = y * cx - z * sx;
+      let z2 = y * sx + z * cx;
+
+      return {x, y:y2, z:z2};
+    }
+
+    function project(v){
+      const p = rot(v);
+      const fov = 260; // pseudo perspective
+      const s = fov / (fov + p.z);
+      return {
+        x: (p.x * s),
+        y: (p.y * s),
+        z: p.z,
+        s
+      };
+    }
+
+    // system data (showcase-like)
+    const bodies = [
+      {name:"Sonne",   a:0,      e:0,      period:1,     color:"#ffd24a", r:10},
+      {name:"Merkur",  a:40,     e:0.21,   period:0.241, color:"#a8a8a8", r:3},
+      {name:"Venus",   a:58,     e:0.007,  period:0.615, color:"#ffa24a", r:4},
+      {name:"Erde",    a:80,     e:0.017,  period:1.0,   color:"#3aa8ff", r:4},
+      {name:"Mars",    a:105,    e:0.093,  period:1.881, color:"#ff3a2f", r:3.5},
+      {name:"Jupiter", a:180,    e:0.049,  period:11.86, color:"#d9a06a", r:7},
+      {name:"Saturn",  a:230,    e:0.054,  period:29.46, color:"#d7b05a", r:6.5},
+      {name:"Uranus",  a:300,    e:0.047,  period:84.01, color:"#6fe7ff", r:5.5},
+      {name:"Neptun",  a:360,    e:0.009,  period:164.8, color:"#7a4dff", r:5.5},
+    ];
+
+    // angles
+    for(const b of bodies) b.t = Math.random() * Math.PI * 2;
+
+    let simYears = 0;
+
+    function drawStars(){
+      // deterministic-ish stars
+      ctx.save();
+      ctx.globalAlpha = 0.55;
+      ctx.fillStyle = "rgba(255,255,255,.75)";
+      for(let i=0;i<420;i++){
+        const x = (Math.sin(i*999) * 0.5 + 0.5) * W;
+        const y = (Math.cos(i*777) * 0.5 + 0.5) * H;
+        ctx.fillRect(x, y, 1, 1);
+      }
+      ctx.restore();
+    }
+
+    function draw(){
+      // background
+      ctx.clearRect(0,0,W,H);
+      // deep space panel feel
+      ctx.fillStyle = "rgba(14,20,18,.96)";
+      ctx.fillRect(0,0,W,H);
+      drawStars();
+
+      const cx = W/2, cy = H/2;
+
+      // scale based on zoom + fit
+      const scale = zoom * Math.min(W, H) / 900;
+
+      // compute positions
+      const points = [];
+
+      // find earth for moon
+      let earthPos = null;
+
+      for(const b of bodies){
+        if(b.name === "Sonne"){
+          points.push({name:b.name, x:0, y:0, z:0, r:b.r, color:b.color});
+          continue;
+        }
+        const w = (2*Math.PI) / b.period;
+        b.t += w * (Number(speed.value) / 365.25) * 0.9; // stable
+
+        const a = b.a;
+        const e = b.e;
+        const x = (a*Math.cos(b.t) - a*e);
+        const z = (a*Math.sin(b.t) * Math.sqrt(1 - e*e));
+        points.push({name:b.name, x, y:0, z, r:b.r, color:b.color});
+
+        if(b.name === "Erde") earthPos = {x, y:0, z};
+      }
+
+      // moon (simple)
+      if(earthPos){
+        const mt = simYears * (2*Math.PI/0.0748);
+        points.push({
+          name:"Mond",
+          x: earthPos.x + 6*Math.cos(mt),
+          y: 0,
+          z: earthPos.z + 6*Math.sin(mt),
+          r: 2.5,
+          color:"#d0d0d0"
+        });
+      }
+
+      // follow target
+      let follow = followSel.value;
+      let target = {x:0,y:0,z:0};
+      if(follow !== "none"){
+        const f = points.find(p=>p.name===follow);
+        if(f) target = {x:f.x, y:f.y, z:f.z};
+      }
+
+      // draw orbits (in plane)
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.globalAlpha = 0.25;
+      ctx.setLineDash([6,8]);
+      ctx.lineWidth = 1;
+      for(const b of bodies){
+        if(b.name==="Sonne") continue;
+        ctx.strokeStyle = "rgba(255,255,255,.35)";
+        ctx.beginPath();
+        const seg=200;
+        for(let i=0;i<=seg;i++){
+          const t = (i/seg)*Math.PI*2;
+          const a = b.a;
+          const e = b.e;
+          const ox = (a*Math.cos(t) - a*e) - target.x;
+          const oz = (a*Math.sin(t)*Math.sqrt(1-e*e)) - target.z;
+          const pr = project({x:ox*scale, y:0, z:oz*scale});
+          const px = pr.x, py = pr.y;
+          if(i===0) ctx.moveTo(px, py);
+          else ctx.lineTo(px, py);
+        }
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      // depth sort
+      const rendered = points.map(p=>{
+        const pr = project({x:(p.x-target.x)*scale, y:(p.y-target.y)*scale, z:(p.z-target.z)*scale});
+        return {...p, px: pr.x, py: pr.y, pz: pr.z, ps: pr.s};
+      }).sort((a,b)=>a.pz-b.pz);
+
+      // draw bodies
+      ctx.save();
+      ctx.translate(cx, cy);
+
+      for(const p of rendered){
+        const r = Math.max(1.2, p.r * p.ps * 0.55);
+        // glow for sun
+        if(p.name==="Sonne"){
+          const g = ctx.createRadialGradient(p.px, p.py, r*0.2, p.px, p.py, r*3.2);
+          g.addColorStop(0, "rgba(255,210,90,.65)");
+          g.addColorStop(1, "rgba(255,210,90,0)");
+          ctx.fillStyle = g;
+          ctx.beginPath(); ctx.arc(p.px, p.py, r*3.2, 0, Math.PI*2); ctx.fill();
+        }
+
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.px, p.py, r, 0, Math.PI*2);
+        ctx.fill();
+      }
+
+      ctx.restore();
+
+      // time
+      simYears += (Number(speed.value)/365.25) * 0.016; // stable
+      const days = simYears * 365.25;
+      timeLabel.textContent = `t = ${simYears.toFixed(2)} Jahre (${Math.round(days)} Tage)`;
+
+      requestAnimationFrame(draw);
+    }
+
+    resetBtn.addEventListener("click", ()=>{
+      rotX = 0.55; rotY = 0.85; zoom = 1.0;
+      followSel.value = "none";
+    });
+
+    // layout sizing
+    function init(){
+      resize();
+      draw();
+    }
+
+    // set a nice fixed height via CSS sizing
+    window.addEventListener("resize", resize);
+    init();
+  </script>
+
+  <style>
+    /* minimal CSS for the canvas container (safe if you prefer to move into styles.css) */
+    .universe-canvas-2d{
+      border-radius: 18px;
+      overflow:hidden;
+      border: 1px solid rgba(14,20,18,.10);
+      background: rgba(14,20,18,.94);
+      height: min(560px, 70vh);
+    }
+    .universe-canvas-2d canvas{
+      width:100%;
+      height:100%;
+      display:block;
+    }
+    .universe-ui-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+    .universe-ui-controls{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:flex-end;
+    }
+    .u-field{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      min-width: 220px;
+    }
+    .u-field span{
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(14,20,18,.55);
+      font-weight: 750;
+    }
+    .u-field input[type="range"], .u-field select{
+      width:100%;
+    }
+    .u-btn{
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(14,20,18,.10);
+      background: rgba(255,255,255,.60);
+      font-weight: 750;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      font-size: 12px;
+      cursor:pointer;
+    }
+    .universe-ui-time{
+      font-weight: 700;
+      color: rgba(14,20,18,.70);
+    }
+    .universe-ui-foot{
+      margin-top:10px;
+      font-size: 13px;
+    }
+  </style>
+</body>
+</html>
